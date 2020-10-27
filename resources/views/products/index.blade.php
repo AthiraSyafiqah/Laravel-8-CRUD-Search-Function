@@ -6,10 +6,36 @@
             <div class="pull-left">
                 <h2>Laravel 8 CRUD Example from scratch</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+            <br><br>
+            <div class="pull-left">
+                <a class="btn btn-success" href="{{ route('products.create') }}"> Add Product</a>
+            </div>
+        <div>
+        <div class="pull-right">
+            <div class="">
+                <form action="{{ route('products.index') }}" method="GET" role="search">
+
+                    <div class="input-group">
+                        <span>
+                            <button class="btn btn-info" type="submit" title="Search projects">Search
+                            </button>
+                        </span>
+                        <input type="text" class="" name="term" placeholder="Search products" id="term">
+                        <a href="{{ route('products.index') }}" class=" mt-1">
+                            <span >
+                                <button class="btn btn-danger" type="button" title="Refresh page">Refresh
+                                </button>
+                            </span>
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+        </div>
+
+        <div>
+    </div>
     </div>
    
     @if ($message = Session::get('success'))
@@ -17,7 +43,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-   
+   <br>
     <table class="table table-bordered">
         <tr>
             <th>No</th>

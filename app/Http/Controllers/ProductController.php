@@ -7,9 +7,21 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->paginate(5);
+
+        $products = Product::where([
+            ['name', '!=', Null],
+            [function ($query) use ($request){
+                if (($term = $request -> term)){
+                    $query->orWhere('name','LIKE', '%' . $term . '%') ->get();
+                }
+            }]
+        ])
+
+        ->orderBy("id",'desc')
+        ->paginate(10);
+        // $products = Product::latest()->paginate(5);
     
         return view('products.index',compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
